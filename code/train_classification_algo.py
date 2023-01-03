@@ -148,12 +148,12 @@ train_set = SingleCellDataset(images_folder=images_folder,
 
 data_amount = int(len(metadata_subsampled) * data_prct)
 train_size = int(train_prct * data_amount)
-#val_size = (data_amount - train_size) // 2
+val_size = (data_amount - train_size) // 2
 test_size = (data_amount - train_size)
 
 indicies = torch.randperm(len(metadata_subsampled))
 train_indices = indicies[:train_size]
-#val_indicies = indicies[train_size:train_size+val_size]
+val_indicies = indicies[train_size:train_size+val_size]
 test_indicies = indicies[train_size:train_size+test_size]
 
 # Checking there are not overlapping incdicies
@@ -162,34 +162,20 @@ test_indicies = indicies[train_size:train_size+test_size]
 #print(sum(np.isin(test_indicies.numpy() , [train_indices.numpy(), val_indicies.numpy()])))
 
 training_set = torch.utils.data.Subset(train_set, train_indices.tolist())
-#val_set = torch.utils.data.Subset(train_set, val_indicies.tolist())
+val_set = torch.utils.data.Subset(train_set, val_indicies.tolist())
 testing_set = torch.utils.data.Subset(train_set, test_indicies.tolist())
 
-""" training_loader = torch.utils.data.DataLoader(training_set, batch_size=batch_size, 
+training_loader = torch.utils.data.DataLoader(training_set, batch_size=batch_size, 
                                               shuffle=True, drop_last=True)
 val_loader = torch.utils.data.DataLoader(val_set, batch_size=batch_size, shuffle=True)
 test_loader = torch.utils.data.DataLoader(testing_set, batch_size=batch_size, 
-                                          shuffle=True, drop_last=True) """
+                                          shuffle=True, drop_last=True)
 
-""" print(len(training_loader.dataset))
+print(len(training_loader.dataset))
 print(len(val_loader.dataset))
-print(len(test_loader.dataset)) """
+print(len(test_loader.dataset))
 
 images, labels = next(iter(training_loader))
-
-def load_data(data_dir="/zhome/70/5/14854/nobackup/deeplearningf22/bbbc021/singlecell/singh_cp_pipeline_singlecell_images/"):
-    transform = transforms.Compose(
-    [transforms.ToTensor(),
-     transforms.Lambda(lambda x: x/x.max())]
-     )
-
-    trainset = training_set
-
-    testset = torchvision.datasets.CIFAR10(
-        root=data_dir, train=False, download=True, transform=transform)
-
-    return trainset, testset
-
 
 # Load a batch of images into memory
 images, labels = next(iter(training_loader))
