@@ -22,3 +22,4 @@ The pytorch implementation of the models can be found in the files `train_VAE.py
 The results obtained when using training the VAE, VAE+ and classifier models on the HPC are provided in the `results` directory. However, as the files containing the final models were too large to upload to GitHub, these are not present. This also goes for the progression mpg4 videos created during the training procedure.
 
 ### The `visualize` directory:
+All scripts utilized to create the visualization for report and evaluate the model performances are provided in the `virualize` directory. A handful of different visualization can also be found in the `visualize/results_visualizations`.
