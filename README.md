@@ -1,7 +1,7 @@
 # Deep learning project 2022 - Single Cell Images
 This is a repository for the final project in Deep Learning at DTU. 
 
-As the dataset utilized in this project was too large to upload to GitHub or download to a personal laptop, minimal examples provided in the ´code´ folder, which are named:
+As the dataset utilized in this project was too large to upload to GitHub or download to a personal laptop, minimal examples provided in the `code´ folder, which are named:
 - 'minimal_example_standard_VAE.ipynb'
 - ´minimal_example_VAE_plus.ipynb´
 - ´minimal_example_VAE_classifier_model.ipynb´
